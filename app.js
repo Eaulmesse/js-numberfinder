@@ -41,7 +41,7 @@ const play = () => {
         if (valeurInput === randomNumber) {
             console.log("victoire");
             body.style.backgroundImage = bgWin;
-            message.textContent = `BRAVO !!! Le nombre était bien ${randomNumber}`;
+            message.textContent = `BRAVO !!! Le nombre était bien ${randomNumber} !!! Vous avez réussi avec ${vies} vies !!!`;
             rejouerBtn.style.display = "block";
             essayerBtn.setAttribute("disabled", "");
         }
