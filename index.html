@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h1>Trouve le nombre !</h1>
-        <p>Trouve le bon nombre entre 0 et 100. Tu as 5 essais !</p>
+        <p id="niveau">Trouve le bon nombre entre 0 et 100. Tu as 5 essais !</p>
         <div class="vies">
             <ion-icon name="heart-outline"></ion-icon>
             <ion-icon name="heart"></ion-icon>
@@ -23,6 +23,8 @@
             <button type="submit" id="essayerBtn">Essayer</button>
             <p id="erreur"></p>
             <p id="message"></p>
+            <button id="indice"> Un Indice ?</button>
+            <button id="difficulte">Niveau 2</button>
             <button id="rejouer">Rejouer ?</button>
         </form>
         <p id="details">* Brûlant = &plusmn; 2; Chaud = &plusmn; 5; Tiède = &plusmn; 10; Froid = + de 10. </p>
