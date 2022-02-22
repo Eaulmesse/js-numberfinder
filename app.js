@@ -5,6 +5,7 @@ const input = document.getElementById('number');
 const essayerBtn = document.getElementById('essayerBtn');
 const rejouerBtn = document.getElementById('rejouer');
 const body = document.getElementsByTagName('body')[0];
+const erreur = document.getElementById('erreur');
 
 // Modèle de coeurs
 const coeurVide = '<ion-icon name="heart-outline"></ion-icon>';
@@ -18,30 +19,35 @@ const bgBrulant = 'linear-gradient(to top, #ff0844 0%, #ffb199 100%)';
 
 const bgWin = 'linear-gradient(to right, #f83600 0%, #f9d423 100%)';
 const bgLoose = 'linear-gradient(to top, #09203f 0%, #537895 100%)';
+let tableauDeChiffres = [];
 // PLAY : 
 const play = () => {
 
     // nombre aléatoire 
     const randomNumber = Math.floor(Math.random() * 101); // 3
-    const totalVies = 6;
+    const totalVies = 5;
     let vies = totalVies;
     console.log(randomNumber);
 
-    // Actualisation à chaque essai - TOUTE LA LOGIQUE
+    // Actualisation à chaque essai 
     formulaire.addEventListener('submit', (e) => {
         e.preventDefault();
         const valeurInput = parseInt(input.value);
+        erreur.textContent = "";
+        
 
         if (valeurInput < 0 || valeurInput > 100) return;
 
         if (valeurInput === randomNumber) {
+            console.log("victoire");
             body.style.backgroundImage = bgWin;
             message.textContent = `BRAVO !!! Le nombre était bien ${randomNumber}`;
             rejouerBtn.style.display = "block";
             essayerBtn.setAttribute("disabled", "");
         }
-
-        if (valeurInput !== randomNumber) {
+        else if (valeurInput !== randomNumber && tableauDeChiffres.includes(valeurInput) == false){
+            console.log("else if");
+            console.log(valeurInput);
             if (randomNumber < valeurInput + 3 && randomNumber > valeurInput - 3) {
                 body.style.backgroundImage = bgBrulant;
                 message.textContent = "C'est Brûlant !!! 🔥🔥🔥 ";
@@ -49,7 +55,7 @@ const play = () => {
                 body.style.backgroundImage = bgChaud;
                 message.textContent = "C'est Chaud ! 🔥 ";
             } else if (randomNumber < valeurInput + 11 && randomNumber > valeurInput - 11) {
-                body.style.backgroundImage = bgTiede;
+                body.style.backgroundImage = bgTiède;
                 message.textContent = "C'est Tiède 😐 ";
             } else {
                 body.style.backgroundImage = bgFroid;
@@ -57,10 +63,14 @@ const play = () => {
             }
             vies--;
             verifyLoose();
+            tableauDeChiffres.push(valeurInput);
+        }else{
+            console.log("else");
+            erreur.textContent = "Veuillez saisir un nouveau chiffre.";  
         }
 
+        
         actualiseCoeurs(vies);
-
 
     })
 
