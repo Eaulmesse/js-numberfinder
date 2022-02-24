@@ -95,4 +95,14 @@ p#message{
     margin-top: 5px;
 }
 
+#darkmode{
+    display: flex;
+    justify-content: start;
+}
+
+#lightmode{
+    display: flex;
+    justify-content: start;
+}
+
 
